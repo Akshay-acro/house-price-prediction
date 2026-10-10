@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>🏠 House Price Prediction</h1>
+        <p class="subtitle">Predict your house price using machine learning.</p>
+
+        <form method="POST">
+            <label for="area">Area (square feet)</label>
+            <input type="number" id="area" name="area" min="1" step="any" required>
+
+            <label for="bedrooms">Number of Bedrooms</label>
+            <input type="number" id="bedrooms" name="bedrooms" min="1" required>
+
+            <label for="bathrooms">Number of Bathrooms</label>
+            <input type="number" id="bathrooms" name="bathrooms" min="1" required>
+
+            <label for="age">House Age (years)</label>
+            <input type="number" id="age" name="age" min="0" step="any" required>
+
+            <label for="location">Location</label>
+            <select id="location" name="location" required>
+                <option value="City">City</option>
+                <option value="Suburb">Suburb</option>
+            </select>
+
+            <button type="submit">Predict House Price</button>
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            <h2>Estimated House Price</h2>
+            <p>{{ prediction }}</p>
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <div class="error">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <p class="disclaimer">
+            This project uses synthetic example data. Predictions are for
+            educational purposes and are not reliable market valuations.
+        </p>
+    </div>
+</body>
+</html>
